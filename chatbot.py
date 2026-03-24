@@ -20,7 +20,7 @@ ACTION_RESPONSES = {
         "I want to make sure I understand."
     ),
     "offer_support": (
-        "I'm here for you. You don't have to face this alone — "
+        "I'm here for you. You don't have to face this alone :) "
         "we can work through this together."
     ),
     "slow_down": (
@@ -44,6 +44,67 @@ ACTION_RESPONSES = {
         "what else would you like to share?"
     )
 }
+EMOTION_CONFIDENCE_RESPONSES = {
+    ("sadness", "high"): (
+        "It really sounds like you're going through a deeply difficult time right now."
+    ),
+    ("sadness", "medium"): (
+        "It seems like something has been weighing on you lately."
+    ),
+    ("sadness", "low"): (
+        "I'm getting a slight sense that you might be feeling a bit down."
+    ),
+
+    ("anger", "high"): (
+        "I can tell you're really frustrated and upset about this."
+    ),
+    ("anger", "medium"): (
+        "It sounds like this situation is bothering you."
+    ),
+    ("anger", "low"): (
+        "You seem a bit irritated by what's going on."
+    ),
+
+    ("fear", "high"): (
+        "It sounds like you're feeling really anxious or scared right now."
+    ),
+    ("fear", "medium"): (
+        "It seems like something is making you uneasy."
+    ),
+    ("fear", "low"): (
+        "I'm sensing a bit of worry or nervousness."
+    ),
+
+    ("joy", "high"): (
+        "You sound genuinely happy and excited — that's wonderful to hear!"
+    ),
+    ("joy", "medium"): (
+        "It seems like you're feeling pretty good about this."
+    ),
+    ("joy", "low"): (
+        "I'm picking up on a hint of positivity here."
+    ),
+
+    ("disgust", "high"): (
+        "You seem really uncomfortable or repulsed by this."
+    ),
+    ("disgust", "medium"): (
+        "It sounds like this situation doesn't sit well with you."
+    ),
+    ("disgust", "low"): (
+        "I'm sensing a bit of dislike or discomfort."
+    ),
+
+    ("surprise", "high"): (
+        "That really caught you off guard — you sound shocked."
+    ),
+    ("surprise", "medium"): (
+        "It seems like this was unexpected for you."
+    ),
+    ("surprise", "low"): (
+        "I'm getting a slight sense of surprise."
+    ),
+}
 
 # ------------------------------------------------------------------
 # Helpers
@@ -56,18 +117,7 @@ def _load_strategies() -> list:
         return json.load(f).get("strategies", [])
 
 
-def _confidence_level(score: float) -> str:
-    if score >= 0.75:
-        return "high"
-    elif score >= 0.45:
-        return "medium"
-    else:
-        return "low"
 
-
-# ------------------------------------------------------------------
-# Public API
-# ------------------------------------------------------------------
 
 _strategies = _load_strategies()
 
@@ -129,10 +179,19 @@ def get_action(emotion: str, confidence_score: float, turn: int, reaction: str =
     return match["action"] if match else "acknowledge"
 
 
-def get_response_text(action: str) -> str:
-    """Retourne le texte de réponse pour une action donnée."""
-    return ACTION_RESPONSES.get(action, ACTION_RESPONSES["acknowledge"])
+def get_response_text(action: str, emotion: str, confidence: str) -> str:
+    """Retourne le texte final combiné (action + émotion/confiance)."""
 
+    action_text = ACTION_RESPONSES.get(action, ACTION_RESPONSES["acknowledge"])
+    emotion_text = EMOTION_CONFIDENCE_RESPONSES.get(
+        (emotion, confidence),
+        ""
+    )
+
+    # Combine nicely
+    if emotion_text:
+        return f"{emotion_text} {action_text}"
+    return action_text
 
 def get_strategy_info(emotion: str, confidence_score: float) -> str:
     """Retourne un résumé lisible de la stratégie active."""
@@ -160,4 +219,6 @@ if __name__ == "__main__":
     print(f"Turn 2 (stays_negative): {get_action('anger', "medium", 2, 'stays_negative')}")
 
     print("\n=== Test: response text ===")
-    print(get_response_text(get_action("anxiety", "low", 1)))
+    action = get_action("anger", "high", 1)
+    print("action that will be taken", action)
+    print(get_response_text(action, "anger", "high"))
