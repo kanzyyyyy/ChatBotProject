@@ -1,0 +1,611 @@
+{
+  "strategies": [
+    {
+      "name": "sadness_low",
+      "emotion": "sadness",
+      "confidence": "low",
+      "goal": "Gently open space without pressure",
+      "turns": [
+        { "turn": 1, "default": "acknowledge" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "sadness_medium",
+      "emotion": "sadness",
+      "confidence": "medium",
+      "goal": "Be present and validate the user's pain",
+      "turns": [
+        { "turn": 1, "default": "offer_support" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "sadness_high",
+      "emotion": "sadness",
+      "confidence": "high",
+      "goal": "Provide sustained emotional support",
+      "turns": [
+        { "turn": 1, "default": "offer_support" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "anger_low",
+      "emotion": "anger",
+      "confidence": "low",
+      "goal": "Acknowledge without escalating",
+      "turns": [
+        { "turn": 1, "default": "acknowledge" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "de_escalate" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "anger_medium",
+      "emotion": "anger",
+      "confidence": "medium",
+      "goal": "Actively reduce emotional heat",
+      "turns": [
+        { "turn": 1, "default": "de_escalate" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "de_escalate" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "de_escalate" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "anger_high",
+      "emotion": "anger",
+      "confidence": "high",
+      "goal": "Firmly de-fuse without dismissing",
+      "turns": [
+        { "turn": 1, "default": "de_escalate" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "de_escalate" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "slow_down" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "anxiety_low",
+      "emotion": "anxiety",
+      "confidence": "low",
+      "goal": "Clarify what the user is worried about",
+      "turns": [
+        { "turn": 1, "default": "ask_clarification" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "acknowledge" },
+            { "signal": "stays_negative", "action": "slow_down" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "slow_down" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "anxiety_medium",
+      "emotion": "anxiety",
+      "confidence": "medium",
+      "goal": "Ground the user and slow the pace",
+      "turns": [
+        { "turn": 1, "default": "slow_down" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "slow_down" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "anxiety_high",
+      "emotion": "anxiety",
+      "confidence": "high",
+      "goal": "Contain and reassure with calm presence",
+      "turns": [
+        { "turn": 1, "default": "slow_down" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "slow_down" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "disgust_low",
+      "emotion": "disgust",
+      "confidence": "low",
+      "goal": "Surface what is bothering the user",
+      "turns": [
+        { "turn": 1, "default": "ask_clarification" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "acknowledge" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "ask_clarification" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "disgust_medium",
+      "emotion": "disgust",
+      "confidence": "medium",
+      "goal": "Validate without reinforcing the reaction",
+      "turns": [
+        { "turn": 1, "default": "acknowledge" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "ask_clarification" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "disgust_high",
+      "emotion": "disgust",
+      "confidence": "high",
+      "goal": "Reframe constructively after validating",
+      "turns": [
+        { "turn": 1, "default": "acknowledge" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "de_escalate" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "joy_low",
+      "emotion": "joy",
+      "confidence": "low",
+      "goal": "Don't interrupt, let the moment breathe",
+      "turns": [
+        { "turn": 1, "default": "continue" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "ask_clarification" },
+            { "signal": "rejects_help",   "action": "continue" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "continue" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "joy_medium",
+      "emotion": "joy",
+      "confidence": "medium",
+      "goal": "Amplify the positive energy",
+      "turns": [
+        { "turn": 1, "default": "encourage" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "ask_clarification" },
+            { "signal": "rejects_help",   "action": "continue" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "continue" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "joy_high",
+      "emotion": "joy",
+      "confidence": "high",
+      "goal": "Celebrate fully and sustain the moment",
+      "turns": [
+        { "turn": 1, "default": "encourage" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "ask_clarification" },
+            { "signal": "rejects_help",   "action": "continue" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "continue" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "surprise_low",
+      "emotion": "surprise",
+      "confidence": "low",
+      "goal": "Check valence before reacting",
+      "turns": [
+        { "turn": 1, "default": "ask_clarification" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "acknowledge" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "surprise_medium",
+      "emotion": "surprise",
+      "confidence": "medium",
+      "goal": "Help the user process the unexpected",
+      "turns": [
+        { "turn": 1, "default": "acknowledge" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "surprise_high",
+      "emotion": "surprise",
+      "confidence": "high",
+      "goal": "Adapt to valence — support if negative, encourage if positive",
+      "turns": [
+        { "turn": 1, "default": "offer_support" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "anticipation_low",
+      "emotion": "anticipation",
+      "confidence": "low",
+      "goal": "Clarify what the user is building towards",
+      "turns": [
+        { "turn": 1, "default": "ask_clarification" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "continue" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "anticipation_medium",
+      "emotion": "anticipation",
+      "confidence": "medium",
+      "goal": "Build on the user's forward momentum",
+      "turns": [
+        { "turn": 1, "default": "encourage" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "ask_clarification" },
+            { "signal": "rejects_help",   "action": "continue" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "continue" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "anticipation_high",
+      "emotion": "anticipation",
+      "confidence": "high",
+      "goal": "Sustain and channel the user's energy",
+      "turns": [
+        { "turn": 1, "default": "encourage" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "ask_clarification" },
+            { "signal": "rejects_help",   "action": "continue" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "continue" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "trust_low",
+      "emotion": "trust",
+      "confidence": "low",
+      "goal": "Preserve the safe space, don't push",
+      "turns": [
+        { "turn": 1, "default": "continue" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "trust_medium",
+      "emotion": "trust",
+      "confidence": "medium",
+      "goal": "Reinforce the user's openness",
+      "turns": [
+        { "turn": 1, "default": "encourage" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "offer_support" },
+            { "signal": "stays_negative", "action": "acknowledge" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "trust_high",
+      "emotion": "trust",
+      "confidence": "high",
+      "goal": "Deepen the connection and offer real support",
+      "turns": [
+        { "turn": 1, "default": "offer_support" },
+        {
+          "turn": 2,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "slow_down" }
+          ]
+        },
+        {
+          "turn": 3,
+          "branches": [
+            { "signal": "opens_up",       "action": "encourage" },
+            { "signal": "stays_negative", "action": "offer_support" },
+            { "signal": "rejects_help",   "action": "suggest_pause" }
+          ]
+        }
+      ]
+    }
+  ]
+}
