@@ -1,6 +1,4 @@
 """
-strategy_engine.py
-------------------
 Moteur de dialogue : charge les stratégies depuis strategies.json,
 sélectionne la bonne action selon l'émotion, la confiance et la réaction utilisateur.
 """
@@ -12,15 +10,15 @@ STRATEGIES_FILE = os.path.join(os.path.dirname(__file__), "strategies.json")
 
 ACTION_RESPONSES = {
     "acknowledge": (
-        "I hear you. It sounds like things have been really tough. "
-        "Thank you for sharing that with me."
+        "I hear you. That's rough buddy."
+        "thank you for sharing that with me."
     ),
     "ask_clarification": (
-        "Could you tell me a bit more about what's been going on? "
+        "Can you tell me more ? "
         "I want to make sure I understand."
     ),
     "offer_support": (
-        "I'm here for you. You don't have to face this alone :) "
+        "I'm here for you. You don't have to face this alone. "
         "we can work through this together."
     ),
     "slow_down": (
@@ -33,14 +31,14 @@ ACTION_RESPONSES = {
     ),
     "encourage": (
         "You've already shown a lot of strength just by talking about this. "
-        "Keep going — things can get better."
+        "Keep going ! things can get better."
     ),
     "suggest_pause": (
         "It might help to take a short break and come back to this. "
         "Sometimes stepping away gives us a fresh perspective."
     ),
     "continue": (
-        "I'm listening. Please continue — "
+        "I'm listening. Do continue"
         "what else would you like to share?"
     )
 }
@@ -76,7 +74,7 @@ EMOTION_CONFIDENCE_RESPONSES = {
     ),
 
     ("joy", "high"): (
-        "You sound genuinely happy and excited — that's wonderful to hear!"
+        "You sound genuinely happy and excited ! that's wonderful to hear!"
     ),
     ("joy", "medium"): (
         "It seems like you're feeling pretty good about this."
@@ -96,7 +94,7 @@ EMOTION_CONFIDENCE_RESPONSES = {
     ),
 
     ("surprise", "high"): (
-        "That really caught you off guard — you sound shocked."
+        "That really caught you off guard !! you sound shocked !"
     ),
     ("surprise", "medium"): (
         "It seems like this was unexpected for you."
@@ -209,16 +207,16 @@ def get_strategy_info(emotion: str, confidence_score: float) -> str:
 if __name__ == "__main__":
     print("=== Test: sadness, low")
     print(get_strategy_info("sadness", "high"))
-    print(f"Turn 1:                  {get_action('sadness', "high", 1)}")
-    print(f"Turn 2 (opens_up):       {get_action('sadness', "high", 2, 'opens_up')}")
-    print(f"Turn 3 (rejects_help):   {get_action('sadness', "high", 3, 'rejects_help')}")
+    print(f"Turn 1:                  {get_action('sadness', 'high', 1)}")
+    print(f"Turn 2 (opens_up):       {get_action('sadness', 'high', 2, 'opens_up')}")
+    print(f"Turn 3 (rejects_help):   {get_action('sadness', 'high', 3, 'rejects_help')}")
 
     print("\n=== Test: anger, confidence medium ===")
     print(get_strategy_info("anger", "medium"))
-    print(f"Turn 1:                  {get_action('anger', "medium", 1)}")
-    print(f"Turn 2 (stays_negative): {get_action('anger', "medium", 2, 'stays_negative')}")
+    print(f"Turn 1:                  {get_action('anger', 'medium', 1)}")
+    print(f"Turn 2 (stays_negative): {get_action('anger', 'medium', 2, 'stays_negative')}")
 
     print("\n=== Test: response text ===")
     action = get_action("anger", "high", 1)
     print("action that will be taken", action)
-    print(get_response_text(action, "anger", "high"))
+    print(get_response_text(action, "anger", 'high'))
