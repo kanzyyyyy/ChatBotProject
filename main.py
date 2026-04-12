@@ -1,5 +1,7 @@
 from oracle import analyze
 from chatbot import get_strategy, get_action, get_response_text, get_strategy_info
+#ajout du modèle Bert
+from Bert_Model import predict_user_reaction, get_next_action
 
 MAX_TURNS = 3
 
@@ -70,8 +72,12 @@ def run_conversation():
                 print("\nAssistant: Take care. I'm here whenever you need.")
                 return
 
-            reaction = detect_reaction(user_input)
-            action = get_action(emotion, confidence, turn=turn, reaction=reaction)
+            #reaction = detect_reaction(user_input)
+            #action = get_action(emotion, confidence, turn=turn, reaction=reaction)
+
+            #Ajout de code pour le modèle Bert
+            _, reaction = predict_user_reaction(user_input)
+            action = get_next_action(current_action, reaction)
 
             print(f"  [turn {turn} | reaction: {reaction} → action: {action}]")
             print(f"\nAssistant: {get_response_text(action, emotion, confidence)}\n")
@@ -106,8 +112,12 @@ def run_conversation():
 
                 break
             else:
-                reaction = detect_reaction(user_input)
-                action = get_action(emotion, confidence, turn=MAX_TURNS, reaction=reaction)
+                #reaction = detect_reaction(user_input)
+                #action = get_action(emotion, confidence, turn=MAX_TURNS, reaction=reaction)
+                
+                #Ajout de code pour le modèle Bert
+                _, reaction = predict_user_reaction(user_input)
+                action = get_next_action(current_action, reaction)
 
                 print(f"  [extended | reaction: {reaction} → action: {action}]")
                 print(f"\nAssistant: {get_response_text(action, emotion, confidence)}\n")
