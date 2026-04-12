@@ -61,6 +61,7 @@ def run_conversation():
         print(f"\n  [strategy: {strategy['name']} | goal: {strategy['goal']}]")
 
         action = get_action(emotion, confidence, turn=1)
+        current_action = action
         print(f"  [turn 1 → action: {action}]")
         print(f"\nAssistant: {get_response_text(action, emotion, confidence)}\n")
 
@@ -78,6 +79,7 @@ def run_conversation():
             #Ajout de code pour le modèle Bert
             _, reaction = predict_user_reaction(user_input)
             action = get_next_action(current_action, reaction)
+            current_action = action
 
             print(f"  [turn {turn} | reaction: {reaction} → action: {action}]")
             print(f"\nAssistant: {get_response_text(action, emotion, confidence)}\n")
@@ -118,6 +120,7 @@ def run_conversation():
                 #Ajout de code pour le modèle Bert
                 _, reaction = predict_user_reaction(user_input)
                 action = get_next_action(current_action, reaction)
+                current_action = action
 
                 print(f"  [extended | reaction: {reaction} → action: {action}]")
                 print(f"\nAssistant: {get_response_text(action, emotion, confidence)}\n")
