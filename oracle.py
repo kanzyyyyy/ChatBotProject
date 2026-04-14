@@ -4,11 +4,11 @@ patterns = {
         "i'm depressed", "i am depressed", "i feel hopeless",
         "nothing works", "nothing ever works", "i give up",
         "i feel empty", "i'm tired of everything", "i feel alone",
-        "sad", "hopeless", "lonely"
+        "sad", "hopeless", "lonely", "taxes", "bad"
     ],
     "anger": [
         "whatever", "nobody listens", "this is so annoying",
-        "i'm angry", "i am angry", "this makes me mad",
+        "i'm angry", "i am angry", "this makes me mad", "mad",
         "why does everything go wrong", "i'm pissed",
         "this is frustrating", "i hate this", "leave me alone"
     ],
@@ -16,7 +16,7 @@ patterns = {
         "i'm nervous", "i am nervous", "i'm scared",
         "i am scared", "i'm afraid", "i am afraid",
         "i'm worried", "i am worried",
-        "i feel anxious", "i'm stressed", "i am stressed",
+        "i feel anxious", "i'm stressed", "i am stressed", "anxious", "anxiety", "stress", "exam"
     ],
     "joy": [
         "that was amazing", "i'm happy", "i am happy",
@@ -31,13 +31,13 @@ patterns = {
     "surprise": [
         "what just happened", "wait what", "are you serious",
         "no way", "i can't believe it", "really?",
-        "that's unexpected", "surprise", "i am surprised", "i'm surprised"
+        "that's unexpected", "surprise", "i am surprised", "i'm surprised", "holy shit"
     ]
 }
 
 INTENSIFIERS = [
-    "so", "very", "really", "extremely", "absolutely", "totally",
-    "completely", "deeply", "truly", "always", "never", "everything", "nothing", "nobody", "ever"
+    "so", "very", "really", "extremely", "absolutely", "totally", "extremly",
+    "completely", "deeply", "truly", "always", "never", "everything", "nothing", "nobody", "ever", "super"
 ]
 
 def analyze(text: str) -> dict:

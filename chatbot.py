@@ -177,18 +177,15 @@ def get_action(emotion: str, confidence_score: float, turn: int, reaction: str =
     return match["action"] if match else "acknowledge"
 
 
-def get_response_text(action: str, emotion: str, confidence: str) -> str:
+def get_response_text(action: str, emotion: str, confidence: str, turn: int) -> str:
     """Retourne le texte final combiné (action + émotion/confiance)."""
 
     action_text = ACTION_RESPONSES.get(action, ACTION_RESPONSES["acknowledge"])
-    emotion_text = EMOTION_CONFIDENCE_RESPONSES.get(
-        (emotion, confidence),
-        ""
-    )
-
-    # Combine nicely
-    if emotion_text:
-        return f"{emotion_text} {action_text}"
+   
+    if turn == 1:
+        emotion_text = EMOTION_CONFIDENCE_RESPONSES.get((emotion, confidence), "")
+        return f"{emotion_text} {action_text}" if emotion_text else action_text
+    
     return action_text
 
 def get_strategy_info(emotion: str, confidence_score: float) -> str:

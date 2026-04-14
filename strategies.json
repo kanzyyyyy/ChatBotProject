@@ -153,8 +153,8 @@
     },
 
     {
-      "name": "anxiety_low",
-      "emotion": "anxiety",
+      "name": "fear_low",
+      "emotion": "fear",
       "confidence": "low",
       "goal": "Clarify what the user is worried about",
       "turns": [
@@ -178,8 +178,8 @@
       ]
     },
     {
-      "name": "anxiety_medium",
-      "emotion": "anxiety",
+      "name": "fear_medium",
+      "emotion": "fear",
       "confidence": "medium",
       "goal": "Ground the user and slow the pace",
       "turns": [
@@ -203,8 +203,8 @@
       ]
     },
     {
-      "name": "anxiety_high",
-      "emotion": "anxiety",
+      "name": "fear_high",
+      "emotion": "fear",
       "confidence": "high",
       "goal": "Contain and reassure with calm presence",
       "turns": [

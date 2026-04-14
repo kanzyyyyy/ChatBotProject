@@ -60,10 +60,10 @@ def run_conversation():
         strategy = get_strategy(emotion, confidence)
         print(f"\n  [strategy: {strategy['name']} | goal: {strategy['goal']}]")
 
-        action = get_action(emotion, confidence, turn=1)
+        action = get_action(emotion, confidence, turn=turn)
         current_action = action
         print(f"  [turn 1 → action: {action}]")
-        print(f"\nAssistant: {get_response_text(action, emotion, confidence)}\n")
+        print(f"\nAssistant: {get_response_text(action, emotion, confidence, turn=turn)}\n")
 
         # ── Turns 2 and 3 ─────────────────────────
         for turn in range(2, MAX_TURNS + 1):
@@ -82,7 +82,7 @@ def run_conversation():
             current_action = action
 
             print(f"  [turn {turn} | reaction: {reaction} → action: {action}]")
-            print(f"\nAssistant: {get_response_text(action, emotion, confidence)}\n")
+            print(f"\nAssistant: {get_response_text(action, emotion, confidence, turn=turn)}\n")
 
         # ── After turn 3 ─────────────────────────
         print("Assistant: I'm still here. How are you feeling now?\n")
@@ -106,11 +106,11 @@ def run_conversation():
                 confidence = new_confidence
                 strategy = get_strategy(emotion, confidence)
 
-                action = get_action(emotion, confidence, turn=1)
+                action = get_action(emotion, confidence, turn=turn)
 
                 print(f"\n  [emotion shift → strategy: {strategy['name']}]")
                 print(f"  [turn 1 → action: {action}]")
-                print(f"\nAssistant: {get_response_text(action, emotion, confidence)}\n")
+                print(f"\nAssistant: {get_response_text(action, emotion, confidence, turn=turn)}\n")
 
                 break
             else:
@@ -123,7 +123,7 @@ def run_conversation():
                 current_action = action
 
                 print(f"  [extended | reaction: {reaction} → action: {action}]")
-                print(f"\nAssistant: {get_response_text(action, emotion, confidence)}\n")
+                print(f"\nAssistant: {get_response_text(action, emotion, confidence, turn=MAX_TURNS)}\n")
 
 
 if __name__ == "__main__":
